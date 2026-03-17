@@ -19,10 +19,11 @@ function Items({ currentItems }) {
         currentItems.map((item) => (
           <ProductListCart
             key={item.id}
-            ProductImage={item.thumbnail}
             Discount={item.discountPercentage}
+            ProductImage={item.thumbnail}
             Heading={item.title}
-            MainPrice={item.price}
+            MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
+            DiscountPrice={item.price}
             Icon1={<CiHeart />}
             Icon2={<IoEyeOutline />}
           />
