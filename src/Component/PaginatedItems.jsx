@@ -24,6 +24,8 @@ function Items({ currentItems }) {
             Heading={item.title}
             MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
             DiscountPrice={item.price}
+            totalreview={item.rating}
+            value={item.rating}
             Icon1={<CiHeart />}
             Icon2={<IoEyeOutline />}
           />

@@ -71,15 +71,11 @@ const Shop = () => {
               </Flex>
               <div className={` ${show ? "block" : "hidden"} md:block`}>               
                   <ul className={` w-full  text-[16px] lg:py-5 py-2  text-xs lg:text-base lg:space-y-2 grid grid-cols-3 md:grid-cols-3 lg:grid-cols-1 gap-x-6 gap-y-1`}>
-                    <li>Woman’s Fashion</li>
-                    <li>Men’s Fashion </li>
-                    <li>Electronics</li>
-                    <li>Home & Lifestyle</li>
-                    <li>Medicine</li>
-                    <li>Sports & Outdoor</li>
-                    <li>Baby’s & Toys </li>
-                    <li>Groceries & Pets</li>
-                    <li>Health & Beauty</li>
+                    {
+                      allProducts.map((items)=>(
+                        <li>{items.category}</li>
+                      ))
+                    }
                   </ul>
               </div>
             </div>

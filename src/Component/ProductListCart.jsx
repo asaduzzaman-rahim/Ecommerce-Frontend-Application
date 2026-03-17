@@ -4,9 +4,10 @@ import Flex from "./Flex"
 import {FaStar} from "react-icons/fa"
 import {CiHeart} from "react-icons/ci"
 import {IoEyeOutline} from "react-icons/io5"
+import { Rate } from 'antd';
 
 
-const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice,total,BtnClass,Icon1,Icon2}) => {
+const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice,totalreview,BtnClass, value ,Icon1,Icon2}) => {
   return (
     <>
         <div className='w-[185px] md:w-[270px] group cursor-pointer  p-3'>
@@ -24,14 +25,10 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
               <p className='text-[12px] md:text-[16px] font-poppins text-primary font-medium leading-[20px] md:leading-[24px]'>${DiscountPrice}</p>
               <p className='text-[12px] md:text-[16px] font-poppins text-hide font-medium leading-[20px] md:leading-[24px]'>${MainPrice}</p>
             </Flex>
-            <Flex className='gap-2'>
-              <FaStar/>
-              <FaStar/>
-              <FaStar/>
-              <FaStar/>
-              <FaStar/>
-              <FaStar/>
-              <span className='text-[14px] font-poppins text-hide font-semibold ml-[8px]'>{total}</span>
+            <Flex className='gap-4 items-center '>
+
+             <Rate value={value} />
+              <span className='text-[14px] font-poppins text-hide font-semibold ml-[8px]'>({totalreview})</span>
             </Flex>
             
         </div>      
