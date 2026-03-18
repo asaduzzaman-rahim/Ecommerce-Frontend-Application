@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
 
@@ -6,10 +6,13 @@ import ProductListCart from './ProductListCart';
 
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
+import { useSelector } from 'react-redux'
 
 
-const PaginatedItems = ({ itemsPerPage , allProducts }) => {
+const PaginatedItems = ({ itemsPerPage }) => {
 
+  const allProducts = useSelector((state)=> state.product.product)
+ 
   const items = allProducts
 
 function Items({ currentItems }) {
@@ -37,15 +40,12 @@ function Items({ currentItems }) {
 
 
   const endOffset = itemOffset + itemsPerPage;
-  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = items.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(items.length / itemsPerPage);
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-    // );
+
     setItemOffset(newOffset);
 }
 

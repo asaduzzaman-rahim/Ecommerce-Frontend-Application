@@ -6,13 +6,15 @@ import Grid from "../Component/Grid";
 import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../Component/Button";
+import BreadCrumb from "./BreadCrumb";
 
 const Contact = () => {
   return (
     <>
-      <div className="pt-[80px] pb-[140px]">
+      <div className="pt-[60px] pb-[140px]">
         <Container>
-         <Flex className="flex-wrap justify-between items-center">
+          <BreadCrumb/>
+         <Flex className="flex-wrap justify-between items-center pt-[20px]">
           {/* <Grid className=" grid grid-cols-1 lg:grid-cols-2 lg:justify-items-start gap-[30px]"> */}
             <div className="lg:w-[270px] px-[30px]  gap-[40px] grid grid-cols-2 lg:grid-cols-1">
               <div className="pb-[32px] lg:border-b-1 ">

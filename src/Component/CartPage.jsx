@@ -5,7 +5,7 @@ import Flex from "../Component/Flex"
 import { IoIosArrowUp } from "react-icons/io"; 
 import { IoIosArrowDown } from "react-icons/io";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 import Cart1 from "../assets/Monitor-Cart-Small.png"
@@ -21,6 +21,8 @@ const CartSection = () => {
     const ProductRemo = ()=>{
         setCountNumber(countNumber-1)
     }
+
+    const navigate = useNavigate()
 
   return (
     <>
@@ -96,7 +98,7 @@ const CartSection = () => {
 
                 {/* ---------------------------------- */}
                 <Flex className="justify-between pt-[24px] pb-[80px]">
-                  <Link to={"/shop"}><Button className="!bg-white px-[48px] !text-black border-1 "> Return To Shop</Button></Link>
+                  <Button onClick={()=> navigate("/shop")} className="!bg-white px-[48px] !text-black border-1 "> Return To Shop</Button>
                   <Button className="!bg-white px-[48px] !text-black border-1 ">Update Cart</Button>
                 </Flex>
                 <Flex className="flex-wrap justify-center lg:justify-between !items-start  gap-y-[50px]">

@@ -17,7 +17,7 @@ import ProductListCart from "../Component/ProductListCart";
 import ShopProducts from "../Component/ShopProducts";
 import BreadCrumb from "./BreadCrumb";
 import { useDispatch } from "react-redux";
-import { ProductReducer } from "../Products/ProductSlice"; 
+import { ProductReducer, CategoryReducer } from "../Products/ProductSlice"; 
 
 
 const Shop = () => {
@@ -25,26 +25,37 @@ const Shop = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [selectOption, setSelectOption] = useState(6)
   const [loading, setLoading] = useState(true)
+  const [categoryList, setCategoryList] = useState([])
+  // const [selectCategory, setSelectCategory]= useState([])
 
-  const dispatch = useDispatch()
-  
-  // console.log(dispatch);
-  // console.log(allProducts);
-  
+  const dispatch = useDispatch() 
   
     useEffect(()=>{
-      fetch('https://dummyjson.com/products/')
+      fetch('https://dummyjson.com/products')
       .then(res => res.json())
       .then((data)=> {
         setAllProducts(data.products)
         dispatch(ProductReducer(data.products))
         setLoading(false)
       })
-      .catch(err => console.log(err))
+      // .catch(err => console.log(err))
     },[dispatch])
     
-    // console.log(allProducts);
-    
+  
+    useEffect(()=>{
+      const uniqueCatugory = [...new Set(allProducts.map((item)=> item.category))]
+      setCategoryList(uniqueCatugory)
+    },[allProducts])
+
+   
+
+    const handleCategory = (items)=>{
+      const FItemsCategury = allProducts.filter((CItems) => CItems.category === items );
+      dispatch(CategoryReducer(FItemsCategury));    
+    }
+
+
+    //  Catugury Part hiden or visibla
       const [show, setShow] = useState(false)
       const handleClick = ()=>{
         setShow(!show)
@@ -72,8 +83,8 @@ const Shop = () => {
               <div className={` ${show ? "block" : "hidden"} md:block`}>               
                   <ul className={` w-full  text-[16px] lg:py-5 py-2  text-xs lg:text-base lg:space-y-2 grid grid-cols-3 md:grid-cols-3 lg:grid-cols-1 gap-x-6 gap-y-1`}>
                     {
-                      allProducts.map((items)=>(
-                        <li>{items.category}</li>
+                      categoryList.map((items)=>(
+                        <li onClick={()=>handleCategory(items) } className="capitalize cursor-pointer">{items}</li>
                       ))
                     }
                   </ul>
@@ -83,37 +94,31 @@ const Shop = () => {
 
           {/* ** ------------- Product list Items----------------- */}
           <div className="w-[100%] lg:!w-80%]">
-                <div className="lg:w-[] w-full ">
-      <div className="flex items-center gap-2 pb-4 lg:pb-8 ">
-        <div className="w-full flex gap-3 items-center justify-end">
-        <h4 className="text-[16px]">Show:</h4>
-          <select id="#" onChange={(e)=> setSelectOption(e.target.value) }
-                  className="border-1 border-hide rounded-md  px-7 py-1">
-            <option value="6">6</option>
-            <option value="9">9</option>
-            <option value="12">12</option>
-          </select>
-        </div>
-      </div>
-      <Flex className="items-center gap-[20px] md:gap-[15px] lg:gap-[40px] flex-wrap justify-center lg:justify-start">
-       
-        { 
-        loading ?
-        
-          Array.from({ length: Number(selectOption) }).map((_, id) => {
-              return <SkeletonDemo key={id} />;
-            })
-          
-          // <div className="flex gap-[30px] justify-between">
-          //   <SkeletonDemo />  
-          //   <SkeletonDemo />  
-          //   <SkeletonDemo />  
-          // </div>
-          :
-          <PaginatedItems itemsPerPage={selectOption} allProducts={allProducts}/>
-      }
-      </Flex>
-    </div>
+            <div className="lg:w-[] w-full ">
+              <div className="flex items-center gap-2 pb-4 lg:pb-8 ">
+                <div className="w-full flex gap-3 items-center justify-end">
+                <h4 className="text-[16px]">Show:</h4>
+                  <select id="#" onChange={(e)=> setSelectOption(e.target.value) }
+                          className="border-1 border-hide rounded-md  px-7 py-1">
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                    <option value="12">12</option>
+                  </select>
+                </div>
+              </div>
+              <Flex className="items-center gap-[20px] md:gap-[15px] lg:gap-[40px] flex-wrap justify-center lg:justify-start">
+              
+                { 
+                loading ?
+                
+                  Array.from({ length: Number(selectOption) }).map((_, id) => {
+                      return <SkeletonDemo key={id} />;
+                    })
+                  :
+                  <PaginatedItems itemsPerPage={selectOption}/>
+              }
+              </Flex>
+            </div>
           </div>
         
         </Flex>

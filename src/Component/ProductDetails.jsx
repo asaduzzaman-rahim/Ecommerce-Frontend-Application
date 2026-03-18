@@ -3,6 +3,7 @@ import Container from "../Component/Container";
 import Flex from "../Component/Flex";
 import Button from "../Component/Button";
 import SecHeading from "../Component/SecHeading"
+import BreadCrumb from "./BreadCrumb";
 
 import {FaStar} from "react-icons/fa"
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -33,7 +34,7 @@ const ProductDetailsPage = () => {
         <Container>
           <div className="!py-[80px]">
             <span className=" text-[14px] leading-[21px] font-poppins">
-              Havic HV G-92 Gamepad
+              <BreadCrumb/>
             </span>
           </div>
           <Flex className=" flex-wrap gap-[70px] !items-start justify-center">
