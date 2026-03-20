@@ -30,7 +30,7 @@ let router = createBrowserRouter([
       {path: "contact", Component: Contact},
       {path: "signup", Component: SignUpPage},
       {path: "wishlist",Component: WishListPage},
-      {path: "shop/:title",Component: ProductDetailsPage},
+      {path: "products/:id",Component: ProductDetailsPage},
       {path: "myaccount",Component: MyAccount,},
       {path: "signin",Component: SignInPage},
       {path: "CheckOut",Component: CheckOut},

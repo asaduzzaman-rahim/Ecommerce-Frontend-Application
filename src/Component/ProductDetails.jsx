@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "../Component/Container";
 import Flex from "../Component/Flex";
 import Button from "../Component/Button";
 import SecHeading from "../Component/SecHeading"
 import BreadCrumb from "./BreadCrumb";
+import RelatedProductList from "../Component/RelatedProductList";
+
+import { useParams } from "react-router";
+import { Rate } from "antd";
 
 import {FaStar} from "react-icons/fa"
 import { IoIosHeartEmpty } from "react-icons/io";
-
-
 
 import ProductImg01 from "../assets/Product Details Img (1).png";
 import ProductImg02 from "../assets/Product Details Img (2).png";
@@ -17,9 +19,21 @@ import ProductImg04 from "../assets/Product Details Img (4).png";
 import ProductImg05 from "../assets/Product Details Img (5).png";
 import Delivary from "../assets/icon-delivery.png"
 import Return from "../assets/Icon-return.png"
-import RelatedProductList from "../Component/RelatedProductList";
 
 const ProductDetailsPage = () => {
+  const [allProducts, setAllProducts] = useState([]);
+  const {id} = useParams()
+
+
+      useEffect(()=>{
+        fetch(`https://dummyjson.com/products/${id}`)
+        .then(res => res.json())
+        .then((data)=> {
+          setAllProducts(data)          
+        })},[])
+
+
+
 
   const Size = ["XS", "S", "M", "L", "XL", "XXL"]
 
@@ -37,39 +51,38 @@ const ProductDetailsPage = () => {
               <BreadCrumb/>
             </span>
           </div>
-          <Flex className=" flex-wrap gap-[70px] !items-start justify-center">
+          <Flex className=" flex-wrap gap-[70px] !items-start  justify-center">
             <div>
               <Flex className="gap-[30px] flex-wrap">
-                <Flex className="md:flex-col  gap-[16px]">
-                  <img className="w-[22%] md:w-full" src={ProductImg02} alt="Product Img" />
-                  <img className="w-[22%] md:w-full" src={ProductImg03} alt="Product Img" />
-                  <img className="w-[22%] md:w-full" src={ProductImg04} alt="Product Img" />
-                  <img className="w-[22%] md:w-full" src={ProductImg05} alt="Product Img" />
+                <Flex className="md:flex-col items-start justify-between w-[150px]  gap-[16px]">
+                  {
+                    allProducts.images?.map((img, id)=>{
+                      return <img key={id} className="max-w-[145px] border-1 border-hide " src={img} alt="Product Img" />
+                    })
+                  }
+                  
+                  
                 </Flex>
-                <img src={ProductImg01} alt="Product Img" />
+                <img className="w-[500px] border-1 border-hide" src={allProducts.thumbnail} alt="Product Img" />
               </Flex>
             </div>
 
             {/* Products Content Details Part Start  */}
 
             <div className="lg:w-[393px] ">
-              <h1 className="text-[24px] font-inter font-semibold leading-[24px]">Havic HV G-92 Gamepad</h1>
+              <h1 className="text-[24px] font-inter font-semibold leading-[24px]">{allProducts.title}</h1>
               <Flex className="gap-[8px] py-[16px] ">
                 <Flex>
-                    <FaStar/>
-                    <FaStar/>
-                    <FaStar/>
-                    <FaStar/>
-                    <FaStar/>
+                     <Rate value={allProducts.rating} />
                 </Flex>
                 <Flex className="gap-[16px]">
-                    <p className="text-[14px] font-poppins leading-[21px] text-hide">(150 Reviews)</p>
-                    <p className="text-[14px] font-poppins text-[#00FF66] leading-[21px] border-l-1 pl-[16px] border-hide">In Stock</p>
+                    <p className="text-[14px] font-poppins leading-[21px] text-hide">({allProducts.rating} Reviews)</p>
+                    <p className="text-[14px] font-poppins text-[#00FF66] leading-[21px] border-l-1 pl-[16px] border-hide">In Stock: {allProducts.stock}</p>
                 </Flex>
               </Flex>
                 <div>
-                    <h3 className="text-[24px] leading-[24px] font-inter">$192.00</h3>
-                    <p className="text-[14px] leading-[21px] font-poppins py-[24px] border-b-1 border-hide">PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+                    <h3 className="text-[24px] leading-[24px] font-inter">${allProducts.price}</h3>
+                    <p className="text-[14px] leading-[21px] font-poppins py-[24px] border-b-1 border-hide">{allProducts.description}</p>
                 </div>
                 <div className="py-[24px] flex items-center gap-[24px]">
                     <h5 className="text-[20px] leading-[20px] font-inter">Colors: </h5>
@@ -107,6 +120,7 @@ const ProductDetailsPage = () => {
                     <IoIosHeartEmpty className='h-[40px] w-[40px] p-[4px]  border-hide border-1 rounded-[4px] cursor-pointer' />
                 </div>
 
+{/* ------------------------------------------------------------------------------------------------------------------------ */}
                 <div className="w-[400px] border-1 border-hide rounded-[5px] mt-[40px]">
                   <div className="flex items-center gap-[16px] p-4 border-b-1 border-hide">
                     <img src={Delivary} alt="Delivary Icon" />

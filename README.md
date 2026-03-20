@@ -107,11 +107,10 @@ This project focuses on:
 
 # 🚀 Upcoming Features
 
-- Context API / Redux integration
+- Redux integration
 - Firebase Authentication
 - Firebase Firestore Database
 - Product filtering system
-- Pagination
 - Search functionality
 - Order history
 - Admin dashboard

@@ -4,8 +4,7 @@ import ReactPaginate from 'react-paginate';
 
 import ProductListCart from './ProductListCart';
 
-import { CiHeart } from "react-icons/ci";
-import { IoEyeOutline } from "react-icons/io5";
+
 import { useSelector } from 'react-redux'
 
 
@@ -22,6 +21,7 @@ function Items({ currentItems }) {
         currentItems.map((item) => (
           <ProductListCart
             key={item.id}
+            id={item.id}
             Discount={item.discountPercentage}
             ProductImage={item.thumbnail}
             Heading={item.title}
@@ -29,8 +29,6 @@ function Items({ currentItems }) {
             DiscountPrice={item.price}
             totalreview={item.rating}
             value={item.rating}
-            Icon1={<CiHeart />}
-            Icon2={<IoEyeOutline />}
           />
         ))}
     </>
