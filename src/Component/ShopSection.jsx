@@ -31,7 +31,7 @@ const Shop = () => {
   const dispatch = useDispatch() 
   
     useEffect(()=>{
-      fetch('https://dummyjson.com/products')
+      fetch('https://dummyjson.com/products?sortBy=title&order=asc')
       .then(res => res.json())
       .then((data)=> {
         setAllProducts(data.products)

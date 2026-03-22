@@ -20,6 +20,7 @@ function Items({ currentItems }) {
       {currentItems &&
         currentItems.map((item) => (
           <ProductListCart
+            products={item}
             key={item.id}
             id={item.id}
             Discount={item.discountPercentage}
@@ -34,7 +35,7 @@ function Items({ currentItems }) {
     </>
   )};
 
-   const [itemOffset, setItemOffset] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
 
 
   const endOffset = itemOffset + itemsPerPage;
@@ -52,12 +53,14 @@ function Items({ currentItems }) {
       <Items currentItems={currentItems} />
       <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        nextLabel=""
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel=""
         renderOnZeroPageCount={null}
+        className="flex gap-2.5 mt-[50px] cursor-pointer"
+        pageClassName="px-[25px] py-[2px] bg-black text-white"
       />
     </>
   )

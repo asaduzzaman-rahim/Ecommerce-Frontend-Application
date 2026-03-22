@@ -6,16 +6,21 @@ import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { Rate } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { CartReducer } from '../Products/ProductSlice';
+import { useDispatch } from 'react-redux';
 
-
-const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice,totalreview,BtnClass, value, id }) => {
+const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice,totalreview,BtnClass, value, id, products }) => {
 
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   
   const handleProductDetaills = ()=>{ 
     navigate(`/products/${id}`)
-    console.log(id);
+  }
+
+
+  const handleAddToCart = ()=>{
+    dispatch(CartReducer(products))
   }
 
 
@@ -25,11 +30,11 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
             <div className='relative overflow-hidden '>
                 <img src={ProductImage} />
                 <h5 className={`${className} absolute top-[8px] md:top-[12px] left-[1px] md:left-[12px] py-[4px] px-[12px] bg-primary text-white inline-block text-[12px] rounded-[4px] font-poppins leading-[18px]`}>{Discount}%</h5>
-                <div className='absolute top-[8px] md:top-[14px] right-[8px] md:right-[14px]'>
-                  <span className='text-[16] text-[26px] leading-[18px]  mb-[8px] text-black cursor-pointer'>{<CiHeart />}</span>
-                  <span className=' text-[16] text-[26px] leading-[18px]  mb-[8px] text-black cursor-pointer'>{  <IoEyeOutline />}</span>
+                <div className='absolute top-[8px] md:top-[14px] right-[8px] md:right-[16px] grid gap-[8px]'>
+                  <span className='text-[16] text-[22px] leading-[18px]  p-1 bg-white  rounded-full text-black cursor-pointer'>{<CiHeart />}</span>
+                  <span className=' text-[16] text-[22px] leading-[18px]  p-1 bg-white  rounded-full text-black cursor-pointer'>{  <IoEyeOutline />}</span>
                 </div>
-                  <button className={`${BtnClass} group-hover:bottom-0 text-[16px] font-poppins font-medium leading-[24px] text-center py-[8px] bg-black text-white w-full duration-300 absolute bottom-[-45px] left-0  cursor-pointer`}>Add to Cart</button>
+                  <button onClick={handleAddToCart} className={`${BtnClass} group-hover:bottom-0 text-[16px] font-poppins font-medium leading-[24px] text-center py-[8px] bg-black text-white w-full duration-300 absolute bottom-[-45px] left-0  cursor-pointer`}>Add to Cart</button>
             </div>
             <button onClick={handleProductDetaills} className='text-[14px] md:text-[16px] font-poppins font-medium leading-[20px] md:leading-[24px] cursor-pointer pt-[16px] '>{Heading}</button>
             <Flex className=' gap-[12px] py-[4px] md:py-[8px]'>
