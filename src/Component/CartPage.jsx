@@ -6,10 +6,10 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
 import { Link, useNavigate } from "react-router-dom";
+import { ImCross } from "react-icons/im";
 
 
 import Cart1 from "../assets/Monitor-Cart-Small.png"
-import Cart2 from "../assets/Gamepad-Cart-Small.png"
 
 const CartSection = () => {
 
@@ -33,7 +33,7 @@ const CartSection = () => {
             </div>
             <div>
                 <table className="w-full text-sm text-left rtl:text-right text-body ">
-                  <thead className="text-sm text-body bg-neutral-secondary-medium border-1 border-indigo-200 py-[20px] ">
+                  <thead className="text-sm text-body border-1 border-indigo-200 shadow-hide py-[20px] ">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-[16px] rounded-s-base font-bold w-[50%]">
                         Product
@@ -51,8 +51,9 @@ const CartSection = () => {
                   </thead>
                   <tr className='py-[20px]'>
                     <td className="px-2 py-2  text-[14px] font-medium w-[50%]">
-                      <div className='flex items-center gap-[20px]'> 
-                        <img src={Cart1} alt="cart photo" /> <p>LCD Monitor</p>
+                      <div className='flex items-center gap-[20px] relative'> 
+                        <img className="w-[54px]" src={Cart1} alt="cart photo" /> <p>LCD Monitor</p>
+                        <ImCross  className='absolute top-[0%] left-[-2%] p-1 bg-white text-red-500 text-xl font-bold rounded-full cursor-pointer'/>
                       </div>
                     </td>
                     <td className='px-6 py-2 text-[14px] font-medium w-[20%]'>
@@ -72,28 +73,7 @@ const CartSection = () => {
                     </td>
                   </tr>
 
-                  {/* <tr className='py-[20px]'>
-                    <td className="px-2 py-2  text-[14px] font-medium w-[50%]">
-                      <div className='flex items-center gap-[20px]'> 
-                        <img src={Cart2} alt="cart photo" /> <p>H1 Gamepad</p>
-                      </div>
-                    </td>
-                    <td className='px-6 py-2 text-[14px] font-medium w-[20%]'>
-                      <p>$550</p>
-                    </td>
-                    <td className='px-6 py-2 text-[14px] font-medium w-[10%]'>
-                        <Flex className='p-1 border-1 border-hide rounded-[5px] justify-between items-center'>
-                            <span className='w-[80%] text-[16px] text-center'>1</span>
-                            <div  className='w-[20%] mr-2 space-y-[5px]'>
-                                <IoIosArrowUp />
-                                <IoIosArrowDown />
-                            </div>
-                        </Flex>
-                    </td>
-                    <td className='px-6 py-2 text-[14px] font-medium w-[20%] text-right'>
-                      <p>$1100</p>
-                    </td>
-                  </tr> */}
+                 
                 </table>
 
                 {/* ---------------------------------- */}
@@ -103,7 +83,7 @@ const CartSection = () => {
                 </Flex>
                 <Flex className="flex-wrap justify-center lg:justify-between !items-start  gap-y-[50px]">
                   <div className='flex gap-[16px]'>
-                    <input type="text" placeholder='Coupon Code' className='pl-[24px] w-[300px] h-[56px] border-1 border-gray-400' />
+                    <input type="text" placeholder='Coupon Code' className='pl-[24px] w-[300px] text-xl h-[56px] border-1 border-gray-400' />
                     <Button>Apply Coupon</Button>
                   </div>
 

@@ -11,6 +11,9 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { FaRegWindowClose } from "react-icons/fa";
 
+import { LuMenu } from "react-icons/lu";
+import { RxCross1 } from "react-icons/rx";
+
 
 
 import Logo from "../assets/Logo.png"
@@ -55,7 +58,7 @@ const Navber = () => {
                         </div>
                         
                         <button onClick={handleNavber}
-                        className='block lg:hidden font-bold text-4xl pr-3 cursor-pointer'>{!navber?<IoMenu />:<FaRegWindowClose />}</button>
+                        className='block lg:hidden font-bold text-4xl pr-3 cursor-pointer transition-all duration-700'>{!navber?<LuMenu />:<RxCross1 />}</button>
                     </Flex>
                 </nav>
             </Container>
