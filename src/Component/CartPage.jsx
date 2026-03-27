@@ -2,25 +2,37 @@ import React, { useState } from 'react'
 import Container from '../Component/Container'
 import Button from "../Component/Button"
 import Flex from "../Component/Flex"
+import BreadCrumb from "../Component/BreadCrumb"
 import { IoIosArrowUp } from "react-icons/io"; 
 import { IoIosArrowDown } from "react-icons/io";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 
 
 import Cart1 from "../assets/Monitor-Cart-Small.png"
+import { useSelector } from 'react-redux'
 
 const CartSection = () => {
 
+  const CartProducts = useSelector((state)=> state.product.cart)
     const [countNumber, setCountNumber] = useState(1)
 
+
+
+
+
+
+
+
+    // ---------------- Count Products Number start ----------------
     const ProductsAdd = ()=>{
-        setCountNumber(countNumber+1)
+      setCountNumber(countNumber+1)
     }
-    const ProductRemo = ()=>{
-        setCountNumber(countNumber-1)
+    const ProductsRemove = ()=>{
+      setCountNumber(countNumber-1)
     }
+    // ---------------- Count Products Number end ----------------
 
     const navigate = useNavigate()
 
@@ -29,11 +41,11 @@ const CartSection = () => {
       <div className='pb-[140px] '>
         <Container>
             <div className='py-[30px] md:py-[50px] lg:py-[80px] '>
-                <span>Home / Cart</span>
+                <BreadCrumb/>
             </div>
             <div>
                 <table className="w-full text-sm text-left rtl:text-right text-body ">
-                  <thead className="text-sm text-body border-1 border-indigo-200 shadow-hide py-[20px] ">
+                  <thead className="text-sm text-body border-1 border-indigo-400 shadow-hide py-[20px] ">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-[16px] rounded-s-base font-bold w-[50%]">
                         Product
@@ -49,29 +61,39 @@ const CartSection = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tr className='py-[20px]'>
-                    <td className="px-2 py-2  text-[14px] font-medium w-[50%]">
-                      <div className='flex items-center gap-[20px] relative'> 
-                        <img className="w-[54px]" src={Cart1} alt="cart photo" /> <p>LCD Monitor</p>
-                        <ImCross  className='absolute top-[0%] left-[-2%] p-1 bg-white text-red-500 text-xl font-bold rounded-full cursor-pointer'/>
-                      </div>
-                    </td>
-                    <td className='px-6 py-2 text-[14px] font-medium w-[20%]'>
-                      <p>$650</p>
-                    </td>
-                    <td className='px-6 py-2 text-[14px] font-medium w-[10%]'>
-                        <Flex className='p-1 border-1 border-hide rounded-[5px] justify-between items-center'>
-                            <span className='w-[80%] text-[16px] text-center'>{countNumber}</span>
-                            <div  className='w-[20%] mr-2 space-y-[5px]'>
-                                <IoIosArrowUp onClick={ProductsAdd}  className='text-[14px]' />
-                                <IoIosArrowDown onClick={ProductRemo}  className='text-[14px]' />
-                            </div>
-                        </Flex>
-                    </td>
-                    <td className='px-6 py-2 text-[14px] font-medium w-[20%] text-right'>
-                      <p>$650</p>
-                    </td>
-                  </tr>
+
+                  {
+                    CartProducts.map((items, id)=>{
+                      return(
+                          <tr key={id} className='py-[20px]'>
+                            <td className="px-2 py-2  text-[14px] font-medium w-[50%]">
+                              <div className='flex items-center gap-[20px] relative'> 
+                                <img className="w-[54px] border-1 border-hide rounded-[10px]" src={items.thumbnail} alt="cart photo" /> <p>{items.title}</p>
+                                <ImCross  className='absolute top-[0%] left-[-2%] p-1 bg-red-500 text-white text-xl rounded-full cursor-pointer'/>
+                              </div>
+                            </td>
+                            <td className='px-6 py-2 text-[14px] font-medium w-[20%]'>
+                              <p>$650</p>
+                            </td>
+                            <td className='px-6 py-2 text-[14px] font-medium w-[10%]'>
+                                <Flex className='p-1 border-1 border-hide rounded-[5px] justify-between items-center'>
+                                    <span className='w-[80%] text-[16px] text-center'>{countNumber}</span>
+                                    <div  className='w-[20%] mr-2 space-y-[5px]'>
+                                        <IoIosArrowUp onClick={ProductsAdd}  className='text-[18px] cursor-pointer' />
+                                        <IoIosArrowDown onClick={ProductsRemove}  className='text-[18px] cursor-pointer' />
+                                    </div>
+                                </Flex>
+                            </td>
+                            <td className='px-6 py-2 text-[14px] font-medium w-[20%] text-right'>
+                              <p>${items.price}</p>
+                            </td>
+                          </tr>                        
+                      )
+                    })
+                  }
+
+
+
 
                  
                 </table>
@@ -120,7 +142,7 @@ const CartSection = () => {
                       </td>
                       </tr>
                     </table>
-                    <Button className="mt-[16px]"><Link to={"/CheckOut"}>Procees to checkout</Link></Button>
+                    <Button className="mt-[16px]">Procees to Checkout</Button>
                   </div>
                 </Flex>
             </div>
