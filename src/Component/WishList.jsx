@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux'
 const WishList = () => {
 
   const WishListProducts = useSelector((state)=>state.product.wishlist)
-  console.log(WishListProducts)
 
 
   return (
@@ -23,7 +22,7 @@ const WishList = () => {
         <div className='py-[10px] md:py-[40px] lg:py-[80px]'>
             <BreadCrumb/>
           <Flex className="justify-between items-center">
-            <span>Wishlist (4)</span>
+            <span>Wishlist ({WishListProducts.length})</span>
             <Button className="!bg-white !text-black border-1 border-hide">Move All To Bag</Button>
           </Flex>
           <Flex className="gap-[30px] items-center flex-wrap justify-center md:justify-start mt-[40px]">
@@ -32,6 +31,7 @@ const WishList = () => {
                 return(
                   <WishListProductCart key={item.id}
                     id={item.id}
+                    products={item}
                     ProductImage={item.thumbnail}
                     Discount={item.discountPercentage}
                     Heading={item.title}
