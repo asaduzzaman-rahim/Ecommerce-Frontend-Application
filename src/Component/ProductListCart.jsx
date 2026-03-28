@@ -8,6 +8,8 @@ import { Rate } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { CartReducer } from '../Products/ProductSlice';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+
 
 const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice,totalreview,BtnClass, value, id, products }) => {
 
@@ -19,14 +21,31 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
   }
 
 
+  const notify = ()=>{
+    toast.success('Successfully! Add to Cart', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+      });
+  }
+
   const handleAddToCart = ()=>{
     dispatch(CartReducer(products))
+    .then(notify())
+    
   }
 
 
   return (
     <>
         <div className='w-[185px] md:w-[270px] group   p-3'>
+            <ToastContainer />
             <div className='relative overflow-hidden '>
                 <img src={ProductImage} />
                 <h5 className={`${className} absolute top-[8px] md:top-[12px] left-[1px] md:left-[12px] py-[4px] px-[12px] bg-primary text-white inline-block text-[12px] rounded-[4px] font-poppins leading-[18px]`}>{Discount}%</h5>

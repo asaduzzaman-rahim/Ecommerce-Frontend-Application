@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Container from './Container'
 import Flex from './Flex'
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 
 
@@ -19,12 +20,15 @@ import { RxCross1 } from "react-icons/rx";
 import Logo from "../assets/Logo.png"
 
 const Navber = () => {
-
+    
+    const CartLenght = useSelector((state)=> state.product.cart)
+   
+    
     const [navber, setNavber] = useState(false)
 
-    const handleNavber = ()=>{
-        setNavber(!navber)
-    }
+        const handleNavber = ()=>{
+            setNavber(!navber)
+        }
 
 
   return (
@@ -52,8 +56,16 @@ const Navber = () => {
                                     className='py-[7px] pl-[15px] pr-[10px]'/>
                                     <RiSearchLine className='h-[32px] w-[32px]   cursor-pointer' />
                                 </div>
-                                <NavLink to={"/wishlist"}> <IoIosHeartEmpty className='h-[32px] w-[32px] cursor-pointer' /></NavLink>
-                                <NavLink to={"/cart"}><RiShoppingCart2Line className='h-[32px] w-[32px] cursor-pointer' /></NavLink> 
+                                <div className='relative'>
+                                    <NavLink to={"/wishlist"}><IoIosHeartEmpty className='text-[32px] cursor-pointer' />
+                                        <div className='w-[20px] h-[20px] rounded-full text-white absolute top-[-5px] left-[22px] bg-black'></div>
+                                    </NavLink>
+                                </div>
+                                <div className='relative'>
+                                    <NavLink to={"/cart"}><RiShoppingCart2Line className='text-[32px] cursor-pointer' />
+                                        <div className='w-[20px] h-[20px] rounded-full text-white absolute top-[-5px] left-[22px] bg-black flex items-center justify-center'><span className='text-[12px] font-inter font-semibold '>{CartLenght.length}</span></div>
+                                    </NavLink> 
+                                </div>
                             </div>
                         </div>
                         
