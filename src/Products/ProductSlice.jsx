@@ -17,19 +17,29 @@ export const ProductSlice = createSlice({
       state.product = action.payload    
     },
     CartReducer: (state, action) => {
-      state.cart = [...state.cart, action.payload]
-      localStorage.setItem("cart", JSON.stringify([...state.cart])) 
-    },
+      const index = state.cart.findIndex((item)=> item.id == action.payload)
+      if (index == -1) {
+        state.cart = [...state.cart, action.payload]
+        localStorage.setItem("cart", JSON.stringify([...state.cart])) 
+      }else {
+        null
+    }   
+      } ,
     RemoveReducer: (state, action) => {
       state.cart.splice(action.payload.id, 1)
       localStorage.setItem("cart", JSON.stringify([...state.cart])) 
     },
     WishlistReducer: (state, action) => {
-      state.wishlist = [...state.wishlist, action.payload]
-      localStorage.setItem("wishlist", JSON.stringify([...state.wishlist])) 
+      const index = state.cart.findIndex((item)=> item.id == action.payload)
+      if (index == -1) {
+        state.wishlist = [...state.wishlist, action.payload]
+        localStorage.setItem("wishlist", JSON.stringify([...state.wishlist])) 
+      } else {
+        null
+      }
     },
     RemoveWishListReducer: (state, action)=>{
-      state.wishlist.splice(action.payload.id, 1)
+      state.wishlist.splice(action.payload.index, 1)
       localStorage.setItem("wishlist", JSON.stringify([...state.wishlist])) 
     }
   },

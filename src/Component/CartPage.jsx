@@ -38,8 +38,9 @@ const CartSection = () => {
         });
     }
 
-    const handleDelete = (id)=>{
-      Dispatch(RemoveReducer(id)) 
+    const handleDelete = (index)=>{
+      Dispatch(RemoveReducer(index)) 
+      console.log(index)
       notify()
     }
 
@@ -82,15 +83,15 @@ const CartSection = () => {
                   </thead>
                    <tbody>
                     {
-                      CartProducts.map((items, id)=>{
+                      CartProducts.map((items, index)=>{
                         return(
-                          <tr  key={id} className='py-[20px]'>
+                          <tr  key={index} className='py-[20px]'>
                               
                               <td className="px-2 py-2  text-[14px] font-medium !w-[50%]">
                                 <div className='flex items-center gap-[20px] relative'> 
                                   <img className="w-[54px] border-1 border-hide rounded-[10px]" src={items.thumbnail} alt="cart photo" /> <p>{items.title}</p>
                                   <ImCross
-                                    onClick={()=> handleDelete(items.id)}
+                                    onClick={()=> handleDelete(index)}
                                     className='absolute top-[0%] left-[-2%] p-1 bg-red-500 text-white text-xl rounded-full cursor-pointer'/>
                                 </div>
                               </td>

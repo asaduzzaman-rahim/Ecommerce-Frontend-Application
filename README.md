@@ -94,20 +94,20 @@ This project focuses on:
 - About page
 - Contact page
 - API product fetching
+- Wishlist logic implementation
+- Product details page
 
 ## 🚧 In Progress
 
 - Cart state management
-- Wishlist logic implementation
-- Product details page
 - Authentication logic
 - Form validation
+- Redux integration
 
 ---
 
 # 🚀 Upcoming Features
 
-- Redux integration
 - Firebase Authentication
 - Firebase Firestore Database
 - Product filtering system

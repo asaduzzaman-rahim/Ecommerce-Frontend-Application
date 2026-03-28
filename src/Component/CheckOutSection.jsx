@@ -2,6 +2,7 @@ import React from 'react'
 import Grid from '../Component/Grid'
 import Container from '../Component/Container'
 import Button from '../Component/Button'
+import BreadCrumb from './BreadCrumb'
 
 import Cart1 from "../assets/Monitor-Cart-Small.png"
 import Cart2 from "../assets/Gamepad-Cart-Small.png"
@@ -13,7 +14,7 @@ const CheckOut = () => {
      <div className='pb-[80px] lg:pb-[140px]'>
         <Container>
             <div className='py-[40px] lg:py-[80px]'>
-                <span>CheckOut</span>
+                <BreadCrumb/>
             </div>
             <Grid className="grid-cols-1 lg:grid-cols-2 justify-between !items-start lg:gap-x-[173px] gap-y-[40px]">
                 <div>
@@ -22,31 +23,33 @@ const CheckOut = () => {
                         <form action="#" className="space-y-[32px]">
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Frist Name</label> <br />
-                                <input type="text"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
+                                <input type="text"  className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
                             </div>
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Company Name</label> <br />
-                                <input type="text"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
+                                <input type="text"  className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
                             </div>
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Street Address*</label> <br />
-                                <input type="text"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
+                                <input type="text"  className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
                             </div>
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Apartment, floor, etc. (optional)</label> <br />
-                                <input type="text"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1" />
+                                <input type="text"  className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1" />
                             </div>
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Town/City*</label> <br />
-                                <input type="text"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1" required />
+                                <input type="text"  className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1" required />
                             </div>
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Phone Number*</label> <br />
-                                <input type="number"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1" required />
+                                <input type="number"  id="phone" name="phone" pattern="(^(\\+88|0088)?(01){1}[3456789]{1}(\\d){8})$" 
+                                placeholder="01XXXXXXXXX"  
+                                className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1" required />
                             </div>
                             <div>
                                 <label htmlFor="text" className='text-[16px] leading-[24px]'>Email Address</label> <br />
-                                <input type="email"  className="bg-[#f5f5f5] h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
+                                <input type="email"  className="bg-[#f5f5f5] font-inter px-2 text-xl h-[50px] w-full lg:w-[470px] mt-[8px] pl-1"  required/>
                             </div>
                             <div className='flex gap-[16px]'>
                                 <input className='!bg-primary' type="checkbox" />
@@ -121,7 +124,7 @@ const CheckOut = () => {
                         {/* Payment gatway section End */}
                         
                     <div className='flex gap-x-[16px] py-[32px]'>
-                        <input type="text" placeholder='Coupon Code' className='w-[300px] h-[56px] bg-[#f4f4f4]' />
+                        <input type="text" placeholder='Coupon Code' className='w-[300px] h-[56px] font-inter px-2 text-xl bg-[#f4f4f4]' />
                         <Button>ApplyCoupon</Button>
                     </div>
                     <Button>Place Order</Button>
