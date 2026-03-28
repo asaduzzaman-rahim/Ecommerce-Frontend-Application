@@ -28,9 +28,13 @@ export const ProductSlice = createSlice({
       state.wishlist = [...state.wishlist, action.payload]
       localStorage.setItem("wishlist", JSON.stringify([...state.wishlist])) 
     },
+    RemoveCartReducer: (state, action)=>{
+      state.wishlist.splice(action.payload.id, 1)
+      localStorage.setItem("wishlist", JSON.stringify([...state.wishlist])) 
+    }
   },
 })
 
-export const { ProductReducer, CategoryReducer, CartReducer, RemoveReducer, WishlistReducer } = ProductSlice.actions
+export const { ProductReducer, CategoryReducer, CartReducer, RemoveReducer, WishlistReducer, RemoveCartReducer } = ProductSlice.actions
 
 export default ProductSlice.reducer

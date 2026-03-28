@@ -6,7 +6,7 @@ import WishListProductCart from "../Component/WishListProdtCart"
 import RelatedProductList from '../Component/RelatedProductList'
 import SecHeading from "../Component/SecHeading"
 
-import productimg from "../assets/ProductImage.jpg"
+// import productimg from "../assets/ProductImage.jpg"
 import BreadCrumb from './BreadCrumb'
 import { useSelector } from 'react-redux'
 
@@ -28,9 +28,10 @@ const WishList = () => {
           </Flex>
           <Flex className="gap-[30px] items-center flex-wrap justify-center md:justify-start mt-[40px]">
             {
-              WishListProducts.map((item, id)=>{
+              WishListProducts.map((item)=>{
                 return(
-                  <WishListProductCart key={id}
+                  <WishListProductCart key={item.id}
+                    id={item.id}
                     ProductImage={item.thumbnail}
                     Discount={item.discountPercentage}
                     Heading={item.title}
