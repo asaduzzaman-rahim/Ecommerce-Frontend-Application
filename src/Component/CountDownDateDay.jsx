@@ -6,7 +6,7 @@ const CountDownDateDay = ({className, SecendclassName}) => {
 
   const[count, setCount] = useState({})
   
-  const conduct_date = "2026-03-25 01:54:00";
+  const conduct_date = "2026-04-25 01:54:00";
   
       setInterval(()=>{
         const countDown = countDownDateAndTime(conduct_date);

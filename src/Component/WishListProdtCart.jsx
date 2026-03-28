@@ -3,10 +3,7 @@ import Flex from "./Flex"
 import { useDispatch } from 'react-redux';
 import { CartReducer, RemoveWishListReducer} from "../Products/ProductSlice"
 
-
 import { ToastContainer, toast, Bounce } from 'react-toastify';
-
-
 import { RiDeleteBin6Line } from "react-icons/ri";
  
 const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice, BtnClass, id, products }) => {
@@ -45,12 +42,10 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
       Dispatch(CartReducer(products))
       .then(notifyCartProduct())
     }
-
-
-  const handleWishListDelete =()=>{
-    Dispatch(RemoveWishListReducer(id))
-    .then(notifyDelete())
-  }
+    const handleWishListDelete =()=>{
+      Dispatch(RemoveWishListReducer(id))
+      .then(notifyDelete())
+    }
 
   return (
     <>
