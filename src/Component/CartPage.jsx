@@ -13,7 +13,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 
-
+ 
 import Cart1 from "../assets/Monitor-Cart-Small.png"
 
 const CartSection = () => {

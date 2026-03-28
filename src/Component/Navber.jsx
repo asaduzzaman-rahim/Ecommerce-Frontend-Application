@@ -22,6 +22,7 @@ import Logo from "../assets/Logo.png"
 const Navber = () => {
     
     const CartLenght = useSelector((state)=> state.product.cart)
+    const WishList = useSelector((state)=> state.product.wishlist)
    
     
     const [navber, setNavber] = useState(false)
@@ -58,7 +59,7 @@ const Navber = () => {
                                 </div>
                                 <div className='relative'>
                                     <NavLink to={"/wishlist"}><IoIosHeartEmpty className='text-[32px] cursor-pointer' />
-                                        <div className='w-[20px] h-[20px] rounded-full text-white absolute top-[-5px] left-[22px] bg-black'></div>
+                                        <div className='w-[20px] h-[20px] rounded-full text-white absolute top-[-5px] left-[22px] bg-black flex items-center justify-center'><span  className='text-[12px] font-inter font-semibold '>{WishList.length}</span></div>
                                     </NavLink>
                                 </div>
                                 <div className='relative'>

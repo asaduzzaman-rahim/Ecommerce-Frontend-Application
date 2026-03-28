@@ -8,9 +8,15 @@ import SecHeading from "../Component/SecHeading"
 
 import productimg from "../assets/ProductImage.jpg"
 import BreadCrumb from './BreadCrumb'
+import { useSelector } from 'react-redux'
 
-
+ 
 const WishList = () => {
+
+  const WishListProducts = useSelector((state)=>state.product.wishlist)
+  console.log(WishListProducts)
+
+
   return (
     <>
       <Container>
@@ -20,35 +26,21 @@ const WishList = () => {
             <span>Wishlist (4)</span>
             <Button className="!bg-white !text-black border-1 border-hide">Move All To Bag</Button>
           </Flex>
-          <Flex className="gap-[30px] items-center flex-wrap mt-[40px]">
-              <WishListProductCart
-                ProductImage={productimg}
-                Discount="-40%"
-                Heading="Breed Dry Dog Food "
-                DiscountPrice="$100"
-                MainPrice="$140"
-              />
-              <WishListProductCart
-                ProductImage={productimg}
-                Discount="-40%"
-                Heading="Breed Dry Dog Food "
-                DiscountPrice="$100"
-                MainPrice="$140"
-              />
-              <WishListProductCart
-                ProductImage={productimg}
-                Discount="-40%"
-                Heading="Breed Dry Dog Food "
-                DiscountPrice="$100"
-                MainPrice="$140"
-              />
-              <WishListProductCart
-                ProductImage={productimg}
-                Discount="-40%"
-                Heading="Breed Dry Dog Food "
-                DiscountPrice="$100"
-                MainPrice="$140"
-              />
+          <Flex className="gap-[30px] items-center flex-wrap justify-center md:justify-start mt-[40px]">
+            {
+              WishListProducts.map((item, id)=>{
+                return(
+                  <WishListProductCart key={id}
+                    ProductImage={item.thumbnail}
+                    Discount={item.discountPercentage}
+                    Heading={item.title}
+                    MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
+                    DiscountPrice={item.price}
+                  />
+                )
+              })
+            }
+             
           </Flex>
 
           {/* Related Product List Section Start */}
@@ -57,7 +49,7 @@ const WishList = () => {
               <SecHeading tittle="Just For You"/>  
               <Button  className="!bg-white !text-black border-1 border-hide">See All</Button>            
             </Flex>
-            <RelatedProductList/>
+            {/* <RelatedProductList/> */}
           </div>
           {/* Related Product List Section End */}
           
