@@ -1,7 +1,8 @@
 # 🛒 Exclusive E-Commerce Frontend (React)
 
-A modern, responsive e-commerce frontend application built with **React** and **Tailwind CSS**.  
-This project is inspired by a professional online shopping platform and focuses on clean UI, reusable components, and scalable architecture.
+**Exclusive** is a fully functional, responsive E-commerce web application built with **React.js**, **Redux Toolkit**, and **Tailwind CSS**. 
+It provides a seamless shopping experience with features like product browsing, cart management, and a wishlist system.
+
 
 > 🚧 **Project Development Running**  
 > This project is currently **under active development**.  
@@ -22,10 +23,6 @@ This project focuses on:
 - Real-world E-commerce Structure
 - Scalable Codebase for Backend Integration
 
-> 🚧 Project Status: Development Running  
-> This project is currently under active development. New features and improvements are being added continuously.
-
-
 ---
 
 ## 🌐 Live Preview
@@ -38,21 +35,11 @@ This project focuses on:
 ## ✨ Features
 
 ✔ Fully responsive layout (Mobile / Tablet / Desktop)  
-✔ Modern Navbar with mobile toggle menu  
-✔ Banner slider using react-slick  
-✔ Flash Sales section with Countdown Timer  
-✔ Category slider  
-✔ Reusable Product Card UI  
-✔ Wishlist UI  
-✔ Cart UI with quantity control  
-✔ Checkout billing form  
-✔ Authentication UI (Sign Up / Login design)  
-✔ API Product Fetching (DummyJSON)  
-✔ Clean footer section  
-✔ Reusable layout system (Container, Flex, Grid)  
-✔ Tailwind utility-based styling  
-✔ Hover & group-hover animations  
-
+- **Dynamic Product Catalog:** Fetches and displays products dynamically from the DummyJSON API.
+- **State Management:** Uses **Redux Toolkit** for centralized state management of the Cart and Wishlist.
+- **Persistent Data:** Integrated with `localStorage` to ensure user data remains intact after page refreshes.
+- **Interactive UI:** Smooth sliders using `react-slick` and a fully responsive design for all devices.
+- **Advanced Routing:** Implemented client-side routing with `react-router-dom` for a fast SPA experience.
 
 ---
 
@@ -60,10 +47,11 @@ This project focuses on:
 
 ### Frontend
 - **React JS**
+- **React Redux**
 - **React Router DOM**
 - **Tailwind CSS**
 - **JavaScript (ES6+)**
-- **JSX**
+- **REST API**
 
 ### UI & Animation
 - **react-slick**
@@ -102,7 +90,6 @@ This project focuses on:
 - Cart state management
 - Authentication logic
 - Form validation
-- Redux integration
 
 ---
 
