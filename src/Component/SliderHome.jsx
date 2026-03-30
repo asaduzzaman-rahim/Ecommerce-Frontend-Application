@@ -5,8 +5,12 @@ import Button from "./Button";
 
 import SliderHomeImg from "../assets/SliderHomeImg.png";
 import CountDownDateDay from "./CountDownDateDay";
+import { useNavigate } from "react-router-dom";
 
 const SliderHome = () => {
+
+  const Navigate = useNavigate()
+
   return (
     <>
       <Container>
@@ -21,7 +25,7 @@ const SliderHome = () => {
                   SecendclassName="w-15 h-15 !pt-3 rounded-full !text-center !leading-[0px] !bg-white "
                 />
               </div>
-              <Button className="!bg-[#00ff66]">Buy Now</Button>
+              <Button onClick={()=> Navigate(`/products/101`)}  className="!bg-[#00ff66]">Buy Now</Button>
             </div>
             <div className="shadow-[15px_10px_15px_15px_rgba(217,217,217,0.5)] text-center mx-auto rounded-full  mr-[44px]">
               <img src={SliderHomeImg} alt="" />

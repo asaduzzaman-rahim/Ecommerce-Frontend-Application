@@ -50,7 +50,7 @@ const WishList = () => {
               <SecHeading tittle="Just For You"/>  
               <Button  className="!bg-white !text-black border-1 border-hide">See All</Button>            
             </Flex>
-            {/* <RelatedProductList/> */}
+            <RelatedProductList/>
           </div>
           {/* Related Product List Section End */}
           

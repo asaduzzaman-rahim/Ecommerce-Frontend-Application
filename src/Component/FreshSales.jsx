@@ -4,11 +4,11 @@ import Container from "./Container";
 import Flex from "./Flex";
 import ProductListCart from "./ProductListCart";
 import Button from "./Button";
+import { useSelector } from 'react-redux'
 
 import {CiHeart} from "react-icons/ci"
 import {IoEyeOutline} from "react-icons/io5"
 
-// import { useSelector } from 'react-redux'
 
 
 import { useNavigate } from "react-router-dom";
@@ -16,18 +16,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import productimg from "../assets/ProductImage.jpg"
+// import productimg from "../assets/ProductImage.jpg"
 import CountDownDateDay from "./CountDownDateDay";
 
 
 const FreshSales = () => {
-  // const allProducts = useSelector((state)=> state.product.product)
-  // console.log(allProducts);
-  
+  const allProducts = useSelector((state)=> state.product.product)
+ 
 
   const navigate = useNavigate()
 
-            function SampleNextArrow(props) {
+      function SampleNextArrow(props) {
             const { className, style, onClick } = props;
             return (
               <div
@@ -38,7 +37,7 @@ const FreshSales = () => {
             );
           }
 
-          function SamplePrevArrow(props) {
+      function SamplePrevArrow(props) {
             const { className, style, onClick } = props;
             return (
               <div
@@ -100,96 +99,25 @@ const FreshSales = () => {
 
           <div className="mt-[40px] mb-[60px] ">
             <Slider {...settings}>
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
+
+              {
+                allProducts.slice(0,9).map((item,id)=>{
+                  return(
+                    <ProductListCart 
+                        key={id}
+                        id={item.id}
+                        Discount={item.discountPercentage}
+                        ProductImage={item.thumbnail}
+                        Heading={item.title}
+                        MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
+                        DiscountPrice={item.price}
+                        totalreview={item.rating}
+                        value={item.rating}
                 />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
-                <ProductListCart 
-                  ProductImage={productimg}
-                  Icon1={<CiHeart/>}
-                  Icon2={<IoEyeOutline/>}
-                  Discount="-40%"
-                  Heading="HAVIT HV-G92 Gamepad"
-                  DiscountPrice="$120"
-                  MainPrice="$160"
-                />
+                  )
+                })
+              }
+                
                 
             </Slider>
           </div>

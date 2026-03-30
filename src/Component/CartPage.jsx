@@ -13,15 +13,12 @@ import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 
- 
-import Cart1 from "../assets/Monitor-Cart-Small.png"
 
 const CartSection = () => {
 
   const CartProducts = useSelector((state)=> state.product.cart)
 
     const [countNumber, setCountNumber] = useState(1)
-    
     const Dispatch = useDispatch()
 
     const notify=()=>{
@@ -40,7 +37,6 @@ const CartSection = () => {
 
     const handleDelete = (index)=>{
       Dispatch(RemoveReducer(index)) 
-      console.log(index)
       notify()
     }
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  product: null,
+  product: localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [],
   cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
   wishlist: localStorage.getItem("wishlist") ? JSON.parse(localStorage.getItem("wishlist")) : [],
 }
@@ -12,12 +12,14 @@ export const ProductSlice = createSlice({
   reducers: {
     ProductReducer: (state, action) => {
       state.product = action.payload
+      localStorage.setItem("products", JSON.stringify(state.product)) 
     },
     CategoryReducer: (state, action) => {
       state.product = action.payload    
+      localStorage.setItem("products", JSON.stringify([...state.product])) 
     },
     CartReducer: (state, action) => {
-      const index = state.cart.findIndex((item)=> item.id == action.payload)
+      const index = state.cart.findIndex((item)=> item.id === action.payload)
       if (index == -1) {
         state.cart = [...state.cart, action.payload]
         localStorage.setItem("cart", JSON.stringify([...state.cart])) 
@@ -30,7 +32,7 @@ export const ProductSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify([...state.cart])) 
     },
     WishlistReducer: (state, action) => {
-      const index = state.cart.findIndex((item)=> item.id == action.payload)
+      const index = state.cart.findIndex((item)=> item.id === action.payload)
       if (index == -1) {
         state.wishlist = [...state.wishlist, action.payload]
         localStorage.setItem("wishlist", JSON.stringify([...state.wishlist])) 

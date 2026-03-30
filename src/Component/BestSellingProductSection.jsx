@@ -4,13 +4,14 @@ import SecHeading from "./SecHeading";
 import Button from "./Button";
 import Flex from "./Flex";
 import ProductListCart from "./ProductListCart";
+import { useSelector } from 'react-redux'
 
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 
-import productimg from "../assets/ProductImage.jpg";
-
 const BestSellingProductSection = () => {
+    const allProducts = useSelector((state)=> state.product.product)
+
   return (
     <>
       <section className="mt-[70px] mb-[140px]">
@@ -20,45 +21,25 @@ const BestSellingProductSection = () => {
             <Button>View All</Button>
           </Flex>
           <Flex className=" flex-wrap justify-center gap-[30px]">
-            <ProductListCart
-              ProductImage={productimg}
-              Icon1={<CiHeart />}
-              Icon2={<IoEyeOutline />}
-              Heading="The north coat"
-              DiscountPrice="$260"
-              MainPrice="$360"
-              total="(65)"
-              className="!hidden"
-            />
-            <ProductListCart
-              ProductImage={productimg}
-              Icon1={<CiHeart />}
-              Icon2={<IoEyeOutline />}
-              Heading="Gucci duffle bag"
-              DiscountPrice="$960"
-              MainPrice="$1160"
-              total="(65)"
-              className="!hidden"
-            />
-            <ProductListCart
-              ProductImage={productimg}
-              Icon1={<CiHeart />}
-              Icon2={<IoEyeOutline />}
-              Heading="RGB liquid CPU Cooler"
-              DiscountPrice="$160"
-              MainPrice="$170"
-              total="(65)"
-              className="!hidden"
-            />
-            <ProductListCart
-              ProductImage={productimg}
-              Icon1={<CiHeart />}
-              Icon2={<IoEyeOutline />}
-              Heading="Small BookSelf"
-              DiscountPrice="$360"
-              total="(65)"
-              className="!hidden"
-            />
+
+            {
+              allProducts.slice(0,4).map((item,id)=>{
+                return(
+                  <ProductListCart 
+                      key={id}
+                      id={item.id}
+                      Discount={item.discountPercentage}
+                      ProductImage={item.thumbnail}
+                      Heading={item.title}
+                      MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
+                      DiscountPrice={item.price}
+                      totalreview={item.rating}
+                      value={item.rating}
+              />
+                )
+              })
+          }
+
           </Flex>
         </Container>
       </section>

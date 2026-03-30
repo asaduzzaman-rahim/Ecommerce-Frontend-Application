@@ -5,16 +5,13 @@ import ProductListCart from "./ProductListCart";
 import Button from "./Button";
 import Flex from "./Flex";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
-import { CiHeart } from "react-icons/ci";
-import { IoEyeOutline } from "react-icons/io5";
-
-import productimg from "../assets/ProductImage.jpg";
-import ProductImg01 from "../assets/BestProduct (1).png";
-import ProductImg02 from "../assets/BestProduct (2).png";
-import ProductImg03 from "../assets/BestProduct (3).png";
 
 const OurExploreProducts = () => {
+
+
+  const allProducts = useSelector((state)=> state.product.product)
 
   const navigate = useNavigate()
 
@@ -25,70 +22,23 @@ const OurExploreProducts = () => {
           <SecHeading tittle="Our Products" heading="Explore Our Products" />
           <div className="my-[40px]">
             <Flex className="flex justify-center flex-wrap gap-[30px] ">
-              <ProductListCart
-                ProductImage={productimg}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="Breed Dry Dog Food "
-                DiscountPrice="$100"
-              />
-              <ProductListCart
-                ProductImage={ProductImg01}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="CANON EOS DSLR Camera"
-                DiscountPrice="$360"
-              />
-              <ProductListCart
-                ProductImage={ProductImg03}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="ASUS FHD Gaming Laptop"
-                DiscountPrice="$700"
-              />
-              <ProductListCart
-                ProductImage={ProductImg02}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="Curology Product Set "
-                DiscountPrice="$500"
-              />
-              <ProductListCart
-                ProductImage={productimg}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="Breed Dry Dog Food "
-                DiscountPrice="$100"
-              />
-              <ProductListCart
-                ProductImage={ProductImg01}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="CANON EOS DSLR Camera"
-                DiscountPrice="$360"
-              />
-              <ProductListCart
-                ProductImage={ProductImg03}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="ASUS FHD Gaming Laptop"
-                DiscountPrice="$700"
-              />
-              <ProductListCart
-                ProductImage={ProductImg02}
-                Icon1={<CiHeart />}
-                Icon2={<IoEyeOutline />}
-                Discount="-40%"
-                Heading="Curology Product Set "
-                DiscountPrice="$500"
-              />
+              {
+                allProducts.slice(0,8).map((item,id)=>{
+                  return(
+                    <ProductListCart 
+                        key={id}
+                        id={item.id}
+                        Discount={item.discountPercentage}
+                        ProductImage={item.thumbnail}
+                        Heading={item.title}
+                        MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
+                        DiscountPrice={item.price}
+                        totalreview={item.rating}
+                        value={item.rating}
+                />
+                  )
+                })
+              }
             </Flex>
           </div>
           <div className="text-center">
