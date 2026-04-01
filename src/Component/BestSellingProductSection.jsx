@@ -6,8 +6,6 @@ import Flex from "./Flex";
 import ProductListCart from "./ProductListCart";
 import { useSelector } from 'react-redux'
 
-import { CiHeart } from "react-icons/ci";
-import { IoEyeOutline } from "react-icons/io5";
 
 const BestSellingProductSection = () => {
     const allProducts = useSelector((state)=> state.product.product)

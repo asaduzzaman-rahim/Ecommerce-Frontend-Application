@@ -29,14 +29,14 @@ const WishList = () => {
             {
               WishListProducts.map((item)=>{
                 return(
-                  <WishListProductCart key={item.id}
-                    id={item.id}
+                  <WishListProductCart key={item?.id}
+                    id={item?.id}
                     products={item}
-                    ProductImage={item.thumbnail}
-                    Discount={item.discountPercentage}
-                    Heading={item.title}
-                    MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
-                    DiscountPrice={item.price}
+                    ProductImage={item?.thumbnail}
+                    Discount={item?.discountPercentage}
+                    Heading={item?.title}
+                    MainPrice={Math.floor(item?.price / (1 - item?.discountPercentage / 100))}
+                    DiscountPrice={item?.price}
                   />
                 )
               })

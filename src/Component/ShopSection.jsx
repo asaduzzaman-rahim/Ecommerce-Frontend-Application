@@ -38,7 +38,6 @@ const Shop = () => {
         dispatch(ProductReducer(data.products))
         setLoading(false)
       })
-      // .catch(err => console.log(err))
     },[dispatch])
     
   

@@ -6,7 +6,7 @@ import { CartReducer, RemoveWishListReducer} from "../Products/ProductSlice"
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import { RiDeleteBin6Line } from "react-icons/ri";
  
-const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice, BtnClass, id, products }) => {
+const WishListProdtCart = ({className,ProductImage,Discount,Heading,DiscountPrice,MainPrice, BtnClass, id, products }) => {
 
   const Dispatch = useDispatch()
 
@@ -72,5 +72,5 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
   )
 }
 
-export default ProductListCart
+export default WishListProdtCart
 

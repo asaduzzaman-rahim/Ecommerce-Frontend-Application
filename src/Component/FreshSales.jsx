@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SecHeading from "./SecHeading";
 import Container from "./Container";
 import Flex from "./Flex";
 import ProductListCart from "./ProductListCart";
 import Button from "./Button";
-import { useSelector } from 'react-redux'
 
 import {CiHeart} from "react-icons/ci"
 import {IoEyeOutline} from "react-icons/io5"
@@ -21,7 +20,16 @@ import CountDownDateDay from "./CountDownDateDay";
 
 
 const FreshSales = () => {
-  const allProducts = useSelector((state)=> state.product.product)
+
+  const [allProducts, setAllProducts] = useState([]);
+
+      useEffect(()=>{
+        fetch('https://dummyjson.com/products?sortBy=title&order=asc')
+        .then(res => res.json())
+        .then((data)=> {
+          setAllProducts(data.products)
+        })
+      },[])
  
 
   const navigate = useNavigate()
@@ -58,9 +66,10 @@ const FreshSales = () => {
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
+      {
+        breakpoint: 1024,
+        settings: {
+                autoplay: true,
                 slidesToShow: 3,
                 slidesToScroll: 3,
                 infinite: true,
@@ -71,6 +80,7 @@ const FreshSales = () => {
               breakpoint: 600,
               settings: {
                 infinite: true,
+                autoplay: true,
                 slidesToShow: 2,
                 slidesToScroll: 2,
                 initialSlide: 2
@@ -80,6 +90,7 @@ const FreshSales = () => {
               breakpoint: 480,
               settings: {
                 infinite: true,
+                autoplay: true,
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 initialSlide: 1
