@@ -5,6 +5,10 @@ import Button from "../Component/Button";
 import SecHeading from "../Component/SecHeading"
 import BreadCrumb from "./BreadCrumb";
 import RelatedProductList from "../Component/RelatedProductList";
+import { useDispatch } from 'react-redux';
+import { CartReducer, WishlistReducer} from "../Products/ProductSlice"
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+
 
 import { useParams } from "react-router";
 import { Rate } from "antd";
@@ -19,6 +23,7 @@ import Return from "../assets/Icon-return.png"
 const ProductDetailsPage = () => {
   const [allProducts, setAllProducts] = useState([]);
   const {id} = useParams()
+  const Dispatch = useDispatch()
 
 
       useEffect(()=>{
@@ -36,11 +41,48 @@ const ProductDetailsPage = () => {
   const [selectedSize, setSelectedSize] = useState("M")
   const [productNumber, setProductNumber] = useState(1)
 
+  const notifyCartProduct = ()=>{
+      toast.success('Successfully! Add to Cart', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+        });
+    }
+    const notifyWishProduct = ()=>{
+      toast.success('Successfully! Add to WishList', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+        });
+    }
+
+  const handleToCart = ()=>{
+    Dispatch(CartReducer(allProducts))
+    .then(notifyCartProduct())
+  }
+  const handleWishList = ()=>{
+    Dispatch(WishlistReducer(allProducts))
+    .then(notifyWishProduct())
+  }
+
 
 
   return (
     <>
       <section>
+        <ToastContainer/>
         <Container>
           <div className="!py-[80px]">
             <span className=" text-[14px] leading-[21px] font-poppins">
@@ -112,8 +154,8 @@ const ProductDetailsPage = () => {
                     <button onClick={()=>setProductNumber(productNumber+1)}
                     className="px-[8px] py-[6px] text-[26px] font-poppins font-medium bg-primary text-white leading-[28px] cursor-pointer">+</button>
                   </div>
-                    <Button className="!py-[10px] rounded-[4px]">Buy Now</Button>
-                    <IoIosHeartEmpty className='h-[40px] w-[40px] p-[4px]  border-hide border-1 rounded-[4px] cursor-pointer' />
+                    <Button onClick={handleToCart} className="!py-[10px] rounded-[4px]">Buy Now</Button>
+                    <IoIosHeartEmpty onClick={handleWishList} className='h-[40px] w-[40px] p-[4px]  border-hide border-1 rounded-[4px] cursor-pointer' />
                 </div>
 
 {/* ------------------------------------------------------------------------------------------------------------------------ */}
