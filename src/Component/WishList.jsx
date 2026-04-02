@@ -15,6 +15,8 @@ const WishList = () => {
 
   const WishListProducts = useSelector((state)=>state.product.wishlist)
 
+  // console.log(WishListProducts)
+
 
   return (
     <>

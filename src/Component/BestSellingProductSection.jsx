@@ -19,13 +19,14 @@ const BestSellingProductSection = () => {
             <Button>View All</Button>
           </Flex>
           <Flex className=" flex-wrap justify-center gap-[30px]">
-
+ 
             {
               allProducts.slice(0,4).map((item,id)=>{
                 return(
                   <ProductListCart 
                       key={id}
-                      id={item.id}
+                      products={item}
+                      id={item?.id}
                       Discount={item.discountPercentage}
                       ProductImage={item.thumbnail}
                       Heading={item.title}

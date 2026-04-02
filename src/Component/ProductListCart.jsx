@@ -50,12 +50,14 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
 
   const handleAddToCart = ()=>{
     dispatch(CartReducer(products))
-    .then(notifyCartProduct())
+    console.log(products);
+    notifyCartProduct()
   }
   
   const handleWishList =()=>{
+    console.log(products);
     dispatch(WishlistReducer(products))
-    .then(notifyWishProduct())
+    notifyWishProduct()
   }
 
   return (

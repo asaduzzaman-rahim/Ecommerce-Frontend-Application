@@ -24,7 +24,7 @@ function Items({ currentItems }) {
             key={item?.id}
             id={item?.id}
             Discount={item.discountPercentage}
-            ProductImage={item?.thumbnail}
+            ProductImage={item.thumbnail}
             Heading={item.title}
             MainPrice={Math.floor(item.price / (1 - item.discountPercentage / 100))}
             DiscountPrice={item.price}

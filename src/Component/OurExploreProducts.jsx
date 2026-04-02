@@ -27,7 +27,8 @@ const OurExploreProducts = () => {
                   return(
                     <ProductListCart 
                         key={id}
-                        id={item.id}
+                        products={item}
+                        id={item?.id}
                         Discount={item.discountPercentage}
                         ProductImage={item.thumbnail}
                         Heading={item.title}

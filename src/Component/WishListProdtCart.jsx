@@ -22,7 +22,7 @@ const WishListProdtCart = ({className,ProductImage,Discount,Heading,DiscountPric
         theme: "dark",
         transition: Bounce,
         });
-    }
+    } 
     const notifyDelete=()=>{
       toast.error('Delete Cart Product', {
         position: "top-right",

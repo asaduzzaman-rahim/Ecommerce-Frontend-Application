@@ -116,6 +116,7 @@ const FreshSales = () => {
                   return(
                     <ProductListCart 
                         key={id}
+                        products={item}
                         id={item.id}
                         Discount={item.discountPercentage}
                         ProductImage={item.thumbnail}
