@@ -117,7 +117,7 @@ const FreshSales = () => {
                     <ProductListCart 
                         key={id}
                         products={item}
-                        id={item.id}
+                        id={item?.id}
                         Discount={item.discountPercentage}
                         ProductImage={item.thumbnail}
                         Heading={item.title}

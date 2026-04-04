@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Container from '../Component/Container'
 import Button from "../Component/Button"
 import Flex from "../Component/Flex"
@@ -18,8 +18,8 @@ const CartSection = () => {
 
   const CartProducts = useSelector((state)=> state.product.cart)
 
-    const [countNumber, setCountNumber] = useState(1)
     const Dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const notify=()=>{
       toast.error('Delete Cart Product', {
@@ -37,19 +37,19 @@ const CartSection = () => {
 
     const handleDelete = (index)=>{
       Dispatch(RemoveReducer(index)) 
-      notify()
+      .then(notify())
     }
 
     // ---------------- Count Products Number start ----------------
     const ProductsAdd = ()=>{
-      setCountNumber(countNumber+1)
+
     }
+
     const ProductsRemove = ()=>{
-      setCountNumber(countNumber-1)
+
     }
     // ---------------- Count Products Number end ----------------
-
-    const navigate = useNavigate()
+    
 
   return (
     <>
@@ -63,18 +63,10 @@ const CartSection = () => {
                 <table className="w-full text-sm text-left rtl:text-right text-body ">
                   <thead className="text-sm text-body border-1 border-indigo-400 shadow-hide py-[20px] ">
                     <tr>
-                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-s-base font-bold w-[50%]">
-                        Product
-                      </th>
-                      <th scope="col" className="md:px-6 py-3 text-[16px] font-bold w-[20%]">
-                        Price
-                      </th>
-                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-e-base font-bold w-[10%]">
-                        Quantity
-                      </th>
-                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-e-base text-right font-bold w-[20%]">
-                        Subtotal
-                      </th>
+                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-e-base font-bold w-[50%]">Product</th>
+                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-e-base font-bold w-[20%]">Price</th>
+                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-e-base font-bold w-[10%]">Quantity</th>
+                      <th scope="col" className="md:px-6 py-3 text-[16px] rounded-e-base text-right font-bold w-[20%]">Subtotal</th>
                     </tr>
                   </thead>
                    <tbody>
@@ -96,7 +88,7 @@ const CartSection = () => {
                               </td>
                               <td className='md:px-6 py-2 text-[14px] font-medium w-[10%]'>
                                   <Flex className='p-1 max-w-[51px] border-1 border-hide rounded-[5px] justify-between items-center'>
-                                      <span className='w-[80%] text-[16px] text-center'>{countNumber}</span>
+                                      <span className='w-[80%] text-[16px] text-center'>{items.quantity}</span>
                                       <div  className='w-[20%] mr-2 space-y-[5px]'>
                                           <IoIosArrowUp onClick={ProductsAdd}  className='text-[18px] cursor-pointer' />
                                           <IoIosArrowDown onClick={ProductsRemove}  className='text-[18px] cursor-pointer' />

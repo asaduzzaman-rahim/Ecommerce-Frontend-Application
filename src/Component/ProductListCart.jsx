@@ -50,7 +50,6 @@ const ProductListCart = ({className,ProductImage,Discount,Heading,DiscountPrice,
 
   const handleAddToCart = ()=>{
     dispatch(CartReducer(products))
-    console.log(products);
     notifyCartProduct()
   }
   
