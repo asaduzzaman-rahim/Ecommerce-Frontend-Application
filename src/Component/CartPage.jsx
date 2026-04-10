@@ -96,7 +96,7 @@ const CartSection = () => {
                                   </Flex>
                               </td>
                               <td className='md:px-6 py-2 text-[14px] font-medium w-[20%] text-right'>
-                                <p>${items?.price * countNumber}</p>
+                                <p>${items?.price }</p>
                               </td>
                             </tr>                        
                         )
